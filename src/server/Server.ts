@@ -1,20 +1,11 @@
 import express from "express";
-import { Router } from "express";
-import { StatusCodes } from "http-status-codes";
-
-const router = Router();
+import "dotenv/config";
+import { router } from "./routes";
 
 const server = express();
 
-interface Teste {}
+server.use(express.json());
 
-router.get("/", (_, res) => {
-  return res.send("Hello World!");
-});
-
-router.post("/", (req, res) => {
-  console.log(req);
-  return res.status(StatusCodes.OK).json(req.body);
-});
+server.use(router);
 
 export { server };
